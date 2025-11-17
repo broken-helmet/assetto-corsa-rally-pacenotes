@@ -19,3 +19,7 @@ How it works
 
 Changing the voice can be done by replacing the files in the folder `voices`. Changing the pacenotes can be done by 
 editing the JSON files in the pacenotes folder.
+
+Thanks to
+---------
+pyaccsharedmemory.py is based on https://github.com/rrennoir/PyAccSharedMemory
