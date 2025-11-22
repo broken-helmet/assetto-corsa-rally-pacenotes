@@ -93,8 +93,8 @@ class Main:
         self.btn_stop = ttk.Button(btn_frame, text="Stop", command=self.on_button_exit, state="disabled")
         self.btn_stop.pack(side=tk.LEFT, padx=10)
 
-        self.btn_stop = ttk.Button(btn_frame, text="Distance", command=self.on_button_distance)
-        self.btn_stop.pack(side=tk.LEFT, padx=10)
+        btn_distance = ttk.Button(btn_frame, text="Distance", command=self.on_button_distance)
+        btn_distance.pack(side=tk.LEFT, padx=10)
 
         ttk.Label(root, text=f"Click start and press {self.config.get("start_button", "space")} when the countdown starts!").pack(pady=(20, 5))
 
