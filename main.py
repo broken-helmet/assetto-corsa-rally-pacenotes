@@ -17,16 +17,16 @@ class Main:
     acrally = None
     btn_start = None
     btn_stop = None
-    start_button = None
+    config = None
 
 
     def on_button_start(self):
         print(self.stages.get())
         self.acrally = ACRally(
-            str(self.voices.get()),
             str(self.stages.get()),
-            float(self.call_earliness.get()),
-            self.start_button
+            self.config.get("voice", "English"),
+            float(self.config.get("call_distance", 1.0)),
+            self.config.get("start_button", "space")
         )
         self.btn_start["state"] = "disabled"
         self.btn_stop["state"] = "normal"
@@ -70,11 +70,11 @@ class Main:
         distance_window.protocol("WM_DELETE_WINDOW", on_close)
 
     def __init__(self):
-        config = yaml.safe_load(open("config.yml"))
+        self.config = yaml.safe_load(open("config.yml"))
 
         root = tk.Tk()
         root.title("AC Rally Pacenote Pal")
-        root.geometry("340x360")
+        root.geometry("340x200")
         self.root = root
 
         stages = os.listdir("pacenotes")
@@ -96,27 +96,7 @@ class Main:
         self.btn_stop = ttk.Button(btn_frame, text="Distance", command=self.on_button_distance)
         self.btn_stop.pack(side=tk.LEFT, padx=10)
 
-        self.start_button = config.get("start_button", "space")
-
-        ttk.Label(root, text=f"Click start and press {self.start_button} when the countdown starts!").pack(pady=(20, 5))
-
-        voices = os.listdir("voices")
-        ttk.Label(root, text="Select a voice:").pack(pady=(20, 5))
-        self.voices = ttk.Combobox(root, values=voices, width=50)
-        self.voices.current(voices.index(config["voice"]))
-        self.voices.pack(pady=5)
-
-        ttk.Label(root, text="Call earliness multiplier (higher is earlier):").pack(pady=(20, 5))
-        self.call_earliness = tk.Spinbox(
-            root,
-            from_=0.00,
-            to=10.00,
-            increment=0.01,
-            textvariable=tk.DoubleVar(value=float(config["call_distance"])),
-            format="%.2f",
-            width=10
-        )
-        self.call_earliness.pack(padx=20, pady=20)
+        ttk.Label(root, text=f"Click start and press {self.config.get("start_button", "space")} when the countdown starts!").pack(pady=(20, 5))
 
         root.mainloop()
 

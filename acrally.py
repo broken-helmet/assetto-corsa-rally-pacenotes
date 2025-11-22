@@ -11,7 +11,7 @@ from pyaccsharedmemory import accSharedMemory
 
 
 class ACRally:
-    def __init__(self, voice, stage, call_earliness, start_button):
+    def __init__(self, stage, voice, call_earliness, start_button):
         self.voice = voice
         self.call_earliness = call_earliness
         self.start_button = start_button
