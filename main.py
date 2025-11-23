@@ -6,6 +6,7 @@ from tkinter import ttk
 
 import yaml
 
+import util
 from acrally import ACRally
 
 
@@ -41,6 +42,7 @@ class Main:
     def on_button_distance(self):
         distance_window = tk.Toplevel(self.root)
         distance_window.title("Distance")
+        distance_window.iconbitmap(util.resource_path("icon.ico"))
         distance_window.geometry("200x100")
         distance_window.attributes("-topmost", True)
         distance_var = tk.StringVar()
@@ -74,6 +76,7 @@ class Main:
 
         root = tk.Tk()
         root.title("AC Rally Pacenote Pal")
+        root.iconbitmap(util.resource_path("icon.ico"))
         root.geometry("340x200")
         self.root = root
 

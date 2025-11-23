@@ -19,7 +19,7 @@ pyz = PYZ(a.pure)
 exe = EXE(
     pyz,
     a.scripts,
-    a.binaries,
+    a.binaries + [('icon.ico', 'icon.ico', 'DATA')],
     a.datas,
     [],
     name='PacenotePal',
@@ -35,4 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='icon.ico',
 )
