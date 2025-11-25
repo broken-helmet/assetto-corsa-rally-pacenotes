@@ -101,7 +101,6 @@ class ACRally:
                     link_to_next = next_note["link_to_next"]
 
                 for token in tokens:
-                    print(token)
                     if token in token_sounds:
                         sound = random.choice(token_sounds[token])
                         winsound.PlaySound(sound, winsound.SND_MEMORY | winsound.SND_NODEFAULT | winsound.SND_NOSTOP)
