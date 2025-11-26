@@ -56,6 +56,7 @@ class ACRally:
                         if handbrake.get_pressed():
                             handbrake_pressed = True
                     time.sleep(0.1)
+                handbrake.close()
             threading.Thread(target=check_pressed_2s, daemon=True).start()
 
         while (not keyboard.is_pressed(self.start_button) and not handbrake_pressed) and not self.exit_all:
@@ -119,7 +120,7 @@ class ACRally:
                 tokens = self.combine_tokens(tokens, token_sounds)
 
                 for token in tokens:
-                    print(token)
+                    # print(token)
                     if token in token_sounds:
                         sound = random.choice(token_sounds[token])
                         winsound.PlaySound(sound, winsound.SND_MEMORY | winsound.SND_NODEFAULT | winsound.SND_NOSTOP)

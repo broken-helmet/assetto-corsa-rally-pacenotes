@@ -39,6 +39,8 @@ class Handbrake:
 
     def close(self):
         self.joystick.quit()
+        pygame.joystick.quit()
+        pygame.quit()
 
     def get_pressed(self):
         pygame.event.pump()
