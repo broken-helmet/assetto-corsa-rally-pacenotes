@@ -155,6 +155,7 @@ class Main:
             self.config["start_button"] = start_var.get()
             self.config["call_distance"] = call_distance_var.get()
             yaml.dump(self.config, open("config.yml", "w"))
+            settings_window.withdraw()
 
         save_btn = ttk.Button(settings_frame, text="Save", command=save)
         save_btn.grid(column=0, columnspan=2, row=5, padx=5, pady=5)

@@ -34,6 +34,7 @@ class ScrollableFrame(ttk.Frame):
 
 class Editor:
     def __init__(self):
+        self.root = None
         self.scroll_frame = None
         self.pacenotes_combo = None
         self.voices_combo = None
@@ -66,7 +67,7 @@ class Editor:
     def new_pacenotes(self):
         if self.pacenotes:
             res = mb.askyesno("New Pacenotes", "Are you sure you want to start from a blank slate? "
-                                                "All unsaved changed will be lost!")
+                                                "All unsaved changed will be lost!", parent=self.root)
             if not res:
                 return
         self.pacenotes = []
@@ -75,7 +76,7 @@ class Editor:
     def load_pacenotes(self):
         if self.pacenotes:
             res = mb.askyesno("Load Pacenotes", "Are you sure you want to load these pacenotes? "
-                                                "All unsaved changed will be lost!")
+                                                "All unsaved changed will be lost!", parent=self.root)
             if not res:
                 return
         self.pacenotes = yaml.safe_load(open(f"pacenotes/{self.pacenotes_combo.get()}.yml"))
@@ -84,7 +85,7 @@ class Editor:
     def save_pacenotes(self):
         res = mb.askyesno("Save Pacenotes",
                           f"Are you sure you want to save your pacenotes to \"{self.pacenotes_combo.get()}.yml\"? "
-                          f"Existing content will be overwritten!")
+                          f"Existing content will be overwritten!", parent=self.root)
 
         if res:
             yaml.dump(
@@ -271,12 +272,12 @@ class Editor:
         self.pacenote_elements.append(add_btn)
 
     def main(self):
-        root = tk.Toplevel()
-        root.title("AC Rally Pacenote Pal editor")
-        root.iconbitmap(util.resource_path("icon.ico"))
-        root.geometry("650x600")
+        self.root = tk.Toplevel()
+        self.root.title("AC Rally Pacenote Pal editor")
+        self.root.iconbitmap(util.resource_path("icon.ico"))
+        self.root.geometry("650x600")
 
-        top_frame = ttk.Frame(root, padding=10)
+        top_frame = ttk.Frame(self.root, padding=10)
         top_frame.pack(fill="x")
 
         self.pacenotes_combo = ttk.Combobox(
@@ -302,10 +303,10 @@ class Editor:
         self.new_button.grid(row=0, column=4, padx=5, pady=5)
 
         # Scrollable frame
-        self.scroll_frame = ScrollableFrame(root)
+        self.scroll_frame = ScrollableFrame(self.root)
         self.scroll_frame.pack(fill="both", expand=True)
 
-        root.mainloop()
+        self.root.mainloop()
 
 if __name__ == "__main__":
     editor = Editor()
