@@ -14,23 +14,34 @@ class ScrollableFrame(ttk.Frame):
     def __init__(self, container, *args, **kwargs):
         super().__init__(container, *args, **kwargs)
 
-        canvas = tk.Canvas(self, highlightthickness=0)
-        scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
-        self.scrollable_frame = ttk.Frame(canvas)
+        self.canvas = tk.Canvas(self, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.canvas.yview)
+        self.scrollable_frame = ttk.Frame(self.canvas)
 
         self.scrollable_frame.bind(
             "<Configure>",
-            lambda e: canvas.configure(
-                scrollregion=canvas.bbox("all")
+            lambda e: self.canvas.configure(
+                scrollregion=self.canvas.bbox("all")
             )
         )
 
-        canvas_frame = canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+        canvas_frame = self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
 
-        canvas.configure(yscrollcommand=scrollbar.set)
+        self.canvas.configure(yscrollcommand=scrollbar.set)
 
-        canvas.pack(side="left", fill="both", expand=True)
+        self.canvas.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
+
+    def get_scroll(self):
+        return self.canvas.yview()[1]
+
+    def set_scroll(self, previous_bottom):
+        self.update_idletasks()
+        new_top, new_bottom = self.canvas.yview()
+        new_visible = new_bottom - new_top
+        new_target_top = previous_bottom - new_visible
+        new_target_top = max(0.0, min(1.0 - new_visible, new_target_top))
+        self.canvas.yview_moveto(new_target_top)
 
 class Editor:
     def __init__(self):
@@ -146,6 +157,7 @@ class Editor:
                     i=i
             ):
                 nonlocal pacenotes_frame
+
                 if pacenotes_frame:
                     pacenotes_frame.destroy()
                 pacenotes_frame = ttk.Frame(self.scroll_frame.scrollable_frame)
@@ -165,20 +177,24 @@ class Editor:
                         new_note = note_var.get()
                         old_note = self.pacenotes[i]["notes"][note_idx]
                         if old_note != new_note:
+                            scroll = self.scroll_frame.get_scroll()
                             self.pacenotes[i]["notes"][note_idx] = new_note
                             draw_playable_pacenotes(
                                 i
                             )
+                            self.scroll_frame.set_scroll(scroll)
                     note_combo.bind("<FocusOut>", note_change)
                     note_combo.bind("<<ComboboxSelected>>", note_change)
                     note_combo.bind("<Return>", note_change)
                     self.pacenote_vars.append(note_var)
 
                     def note_up(note_idx=note_idx):
+                        scroll = self.scroll_frame.get_scroll()
                         self.pacenotes[i]["notes"].insert(note_idx - 1, self.pacenotes[i]["notes"].pop(note_idx))
                         draw_pacenotes(
                             i
                         )
+                        self.scroll_frame.set_scroll(scroll)
 
                     note_up = ttk.Button(pacenotes_frame, text="▲", width=3, command=note_up)
                     note_up.grid(row=note_idx, column=1)
@@ -186,10 +202,12 @@ class Editor:
                         note_up["state"] = "disabled"
 
                     def note_down(note_idx=note_idx):
+                        scroll = self.scroll_frame.get_scroll()
                         self.pacenotes[i]["notes"].insert(note_idx + 1, self.pacenotes[i]["notes"].pop(note_idx))
                         draw_pacenotes(
                             i
                         )
+                        self.scroll_frame.set_scroll(scroll)
 
                     note_down = ttk.Button(pacenotes_frame, text="▼", width=3, command=note_down)
                     note_down.grid(row=note_idx, column=2)
@@ -197,10 +215,12 @@ class Editor:
                         note_down["state"] = "disabled"
 
                     def note_remove(note_idx=note_idx):
+                        scroll = self.scroll_frame.get_scroll()
                         self.pacenotes[i]["notes"].pop(note_idx)
                         draw_pacenotes(
                             i
                         )
+                        self.scroll_frame.set_scroll(scroll)
 
                     note_remove = ttk.Button(pacenotes_frame, text="🗙", width=3, command=note_remove)
                     note_remove.grid(row=note_idx, column=3)
@@ -209,10 +229,12 @@ class Editor:
                     create_entry(note_idx, t)
 
                 def add_note(i=i):
+                    scroll = self.scroll_frame.get_scroll()
                     self.pacenotes[i]["notes"].append("")
                     draw_pacenotes(
                         i
                     )
+                    self.scroll_frame.set_scroll(scroll)
                 add_button = ttk.Button(pacenotes_frame, text="+ Add", command=add_note)
                 add_button.grid(row=len(pacenote["notes"]), column=1, columnspan=3)
                 self.pacenote_elements.append(pacenotes_frame)
@@ -260,6 +282,7 @@ class Editor:
                 w.grid(row=r1)
 
         def pacenote_add():
+            scroll = self.scroll_frame.get_scroll()
             self.pacenotes.append({
                 "distance": 0,
                 "link_to_next": False,
@@ -267,6 +290,7 @@ class Editor:
             })
             add_btn.grid(row=len(self.pacenotes))
             draw_pacenotes(len(self.pacenotes) - 1, self.pacenotes[len(self.pacenotes) - 1])
+            self.scroll_frame.set_scroll(scroll)
         add_btn = ttk.Button(self.scroll_frame.scrollable_frame, text="+ Add pacenote", command=pacenote_add)
         add_btn.grid(row=len(self.pacenotes), column=1, columnspan=2, padx=5, pady=5)
         self.pacenote_elements.append(add_btn)
@@ -276,6 +300,7 @@ class Editor:
         self.root.title("AC Rally Pacenote Pal editor")
         self.root.iconbitmap(util.resource_path("icon.ico"))
         self.root.geometry("650x600")
+        self.root.attributes("-topmost", True)
 
         top_frame = ttk.Frame(self.root, padding=10)
         top_frame.pack(fill="x")
