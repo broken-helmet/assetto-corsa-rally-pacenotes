@@ -4,9 +4,10 @@ AC Rally Pacenote Pal
 Pacenote Pal is an application for Assetto Corsa Rally that replaces the in-game codriver with an external one.
 This way you can use custom voices, edit the pacenotes per stage, and change the timing.
 
-A demo can be found here: https://youtu.be/Quq5dFNgtvQ
-
-**This software is nowhere near finished** and has many rough edges.
+A demo can be found here: 
+[![https://www.youtube.com/watch?v=VI0bbsEnCY0](https://i3.ytimg.com/vi/VI0bbsEnCY0/maxresdefault.jpg)](https://www.youtube.com/watch?v=VI0bbsEnCY0)  
+Seeing it in action:
+[![https://www.youtube.com/watch?v=n4uWh0Z00i8](https://i3.ytimg.com/vi/n4uWh0Z00i8/maxresdefault.jpg)](https://www.youtube.com/watch?v=n4uWh0Z00i8)
 
 How it works
 ------------
@@ -23,13 +24,19 @@ editing the YAML files in the `pacenotes` folder, or adding a new file.
 Changing settings
 -----------------
 
+### In the UI
+
+Settings can be changed by clicking the "Settings" button in the UI.
+
+### Manually
+
 All settings can be found in the `config.yml` file. You can change them by right-clicking on the file and
 selecting "Edit in Notepad". Changes only come into effect after restarting the application.
 
 The options are:
 
 - `voice`: Defines the voice to use for the codriver. Must correspond to the folder name of the voice  in the 
-folder `voices`. Case sensitive. E.g. `Dutch`.
+folder `voices`. Case-sensitive. E.g. `Dutch`.
 - `call_distance`: The multiplier for the call distance. 2.0 makes the calls twice as early, 0.5 makes them 
 very late. E.g. `1.0`.
 - `start_button`: The button to press to start the stage. Make sure this button does not conflict with another 
@@ -58,6 +65,7 @@ adding `PauseX.Ys`, e.g. `Pause1.5s` to pause for 1.5 seconds. The file names ar
 The easiest way is to use the pacenote editor. You can also do it manually.
 
 ### Pacenote Editor  
+
 Load an existing file from the box on the top left, and select the voice to use. The voice influences the example
 that plays, and highlights which notes are missing from the audio. You can also type freely into this textbox.
 
@@ -70,6 +78,7 @@ Missing files will be highlighted in red.
 ![Pacenote Editor](docs/pacenote-editor.png)
 
 ### Manually  
+
 Create an empty YAML file for your pacenotes in the `pacenotes` folder, e.g. `My Notes.yml`. 
 Add a single empty pacenote to it and save the file, i.e.:
 ```
@@ -128,4 +137,5 @@ avoid names with only numbers and special characters.
 
 Thanks to
 ---------
+- @aaattihun for the Hungarian voice
 - pyaccsharedmemory.py is based on https://github.com/rrennoir/PyAccSharedMemory
