@@ -52,7 +52,7 @@ of the stage.
 Creating your own pacenotes by hand
 -----------------------------------
 A pacenote consists of three things:
-1. `distance` - This is the distance into the stage for this pacenote in metres. Press the "Distance" button to
+1. `distance` - This is the distance into the stage for this pacenote in metres. Press the "Odometer" button to
 show the current distance. The codriver will call out this pacenote some time before the pacenote, so you do not 
 have to keep that into account.
 2. `link_to_next` - Whether when the notes from the current pacenote are called out, the next one will be called 
@@ -120,17 +120,22 @@ TightensLate, Tree, TreeInside, TreeOutside, Tunnel, Tyres, UnderBridge, Up, UpH
 Water, WaterSplash, Wet, Widens, WidensInside, WidensLeft, WidensOutside, WidensRight, Yes
 
 I'm aware there are typos in that list (e.g. ThreesOutside), but that matches what ACR uses internally as 
-well. If a file is missing, it will be skipped. It is also possible to add multiple variants of a note by doing
+well. 
+
+If a file is missing, it will be skipped. It is also possible to add multiple variants of a note by doing
 e.g. `After.wav`, `After_1.wav`, `After_2.wav`. It will randomly pick one of the options.
 
+It is also possible to add files that are not in this list (e.g. `Sumppu.wav`). They will not appear in the 
+default pacenotes, but can be used in custom pacenotes.
+
 ACR uses 6 for the widest turn and 1 for the tightest turn. Depending on the voice you could make the audio for
-Left6 sound like "1 Left", "Fast Left", or something else instead.
+Left6 sound like "1 Left", "Fast Left", or something else instead to make it work with the default pacenotes.
 
 It is possible to create a combination of notes by chaining them using a dash (`-`). This way it is possible
 to create e.g. `Into-Left6.wav` which will play for the pacenote `[Into, Left6]` rather than `Into.wav` and 
 `Left6.wav`. There is no limit to this, so `Into-Left6-And-Right5-VeryLong.wav` will also work. It is also 
 possible to create multiple options for this by adding a `_1`, `_2`, etc., like `Into-Left6_2.wav`. 
-It will pick one at random.
+It will pick one at random. When one is used it will also show in the Pacenote Editor.
 
 Custom notes should ideally consist of letters and numbers. Please use the UpperCamelCase convention, and
 avoid names with only numbers and special characters. 
