@@ -886,6 +886,7 @@
           "Tokens": [
             "Into",
             "Right5",
+            "Tightens",
             "KeepIn"
           ]
         },
@@ -956,7 +957,8 @@
           "Tokens": [
             "And",
             "Right4",
-            "VeryLong"
+            "VeryLong",
+            "TightensLate"
           ]
         },
         "LinkToNext": true,

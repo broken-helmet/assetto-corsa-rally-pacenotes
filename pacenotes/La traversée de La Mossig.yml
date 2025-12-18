@@ -112,10 +112,10 @@
 - distance: 3732.4211
   link_to_next: false
   notes: [Dist200]
-- distance: 3925.3523
+- distance: 3941.86
   link_to_next: false
   notes: [Left4]
-- distance: 4034.2102
+- distance: 4012.13
   link_to_next: true
   notes: [Caution, KeepRight, Narrows]
 - distance: 4084.2148

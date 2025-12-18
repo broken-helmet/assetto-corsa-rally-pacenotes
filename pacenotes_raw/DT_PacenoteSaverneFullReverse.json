@@ -644,7 +644,7 @@
       },
       "R0037": {
         "SplineDistanceM": 3732.4211,
-        "LengthM": 189.23811,
+        "LengthM": 208.01,
         "TokenList": {
           "Tokens": [
             "Dist200"
@@ -659,8 +659,8 @@
         }
       },
       "R0038": {
-        "SplineDistanceM": 3925.3523,
-        "LengthM": 108.19156,
+        "SplineDistanceM": 3941.86,
+        "LengthM": 69.22,
         "TokenList": {
           "Tokens": [
             "Left4"
@@ -675,8 +675,8 @@
         }
       },
       "R0039": {
-        "SplineDistanceM": 4034.2102,
-        "LengthM": 47.686874,
+        "SplineDistanceM": 4012.13,
+        "LengthM": 69.77,
         "TokenList": {
           "Tokens": [
             "Caution",

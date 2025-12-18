@@ -105,7 +105,7 @@
   notes: [Dist60, OverCrest]
 - distance: 8888.529
   link_to_next: true
-  notes: [Right4, Tightens, IntoDip]
+  notes: [Right3, Tightens, IntoDip]
 - distance: 8940.587
   link_to_next: false
   notes: [Dist80]
@@ -114,10 +114,10 @@
   notes: [Left5]
 - distance: 9076.723
   link_to_next: true
-  notes: [Into, Right3, OverCrest]
+  notes: [Into, Right4, KeepIn]
 - distance: 9128.336
   link_to_next: false
-  notes: [Dist80, KeepLeft]
+  notes: [Dist80, OverCrest, KeepLeft]
 - distance: 9206.898
   link_to_next: false
   notes: [Left6, Long]

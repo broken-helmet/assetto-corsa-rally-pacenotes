@@ -153,7 +153,7 @@
   notes: [GoRight]
 - distance: 8874.03
   link_to_next: false
-  notes: [Into, Right5, KeepIn]
+  notes: [Into, Right5, Tightens, KeepIn]
 - distance: 8971.526
   link_to_next: true
   notes: [And, KinksStartingLeft]
@@ -165,7 +165,7 @@
   notes: [Caution, Left2, Short, DontCut]
 - distance: 9105.136
   link_to_next: true
-  notes: [And, Right4, VeryLong]
+  notes: [And, Right4, VeryLong, TightensLate]
 - distance: 9219.879
   link_to_next: false
   notes: [Dist40]

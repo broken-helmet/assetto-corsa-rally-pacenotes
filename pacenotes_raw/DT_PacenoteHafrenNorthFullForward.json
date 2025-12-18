@@ -2222,7 +2222,7 @@
         "LengthM": 48.26875,
         "TokenList": {
           "Tokens": [
-            "Right4",
+            "Right3",
             "Tightens",
             "IntoDip"
           ]
@@ -2273,8 +2273,8 @@
         "TokenList": {
           "Tokens": [
             "Into",
-            "Right3",
-            "OverCrest"
+            "Right4",
+            "KeepIn"
           ]
         },
         "LinkToNext": true,
@@ -2291,6 +2291,7 @@
         "TokenList": {
           "Tokens": [
             "Dist80",
+            "OverCrest",
             "KeepLeft"
           ]
         },
