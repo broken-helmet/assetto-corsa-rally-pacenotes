@@ -135,7 +135,8 @@ It is possible to create a combination of notes by chaining them using a dash (`
 to create e.g. `Into-Left6.wav` which will play for the pacenote `[Into, Left6]` rather than `Into.wav` and 
 `Left6.wav`. There is no limit to this, so `Into-Left6-And-Right5-VeryLong.wav` will also work. It is also 
 possible to create multiple options for this by adding a `_1`, `_2`, etc., like `Into-Left6_2.wav`. 
-It will pick one at random. When one is used it will also show in the Pacenote Editor.
+It will pick one at random. When one is used it will also show in the Pacenote Editor. They will not be shown
+as one note in the Pacenote Editor.
 
 Custom notes should ideally consist of letters and numbers. Please use the UpperCamelCase convention, and
 avoid names with only numbers and special characters. 
