@@ -39,6 +39,9 @@ The options are:
 folder `voices`. Case-sensitive. E.g. `Dutch`.
 - `call_distance`: The multiplier for the call distance. 2.0 makes the calls twice as early, 0.5 makes them 
 very late. E.g. `1.0`.
+- `calls_ahead`: The maximum number of notes you want to hear coming up that you have not passed yet. E.g. `3`.
+- `call_speed_multiplier`: The multiplier for how much earlier the call is made with higher speeds. The formula
+is call distance + (speed in km/h × multiplier). E.g. `1.0`.
 - `start_button`: The button to press to start the stage. Make sure this button does not conflict with another 
 button in-game. E.g. `space` for the space bar, or `B` for the letter B.
 
