@@ -116,7 +116,7 @@ class ACRally:
                 previous_distances.pop(0)
 
             if (len(previous_distances) < self.max_calls_ahead and self.notes_list[0]["distance"]
-                    < self.distance + ((80 + self.speed_kmh * self.call_speed_multiplier) * self.call_earliness)):
+                    < self.distance + (80 * self.call_earliness) + ((self.speed_kmh / 9)**2 * self.call_speed_multiplier)):
                 note = self.notes_list.pop(0)
                 previous_distances.append(note["distance"])
                 tokens = self.combine_tokens(note["notes"], token_sounds)
