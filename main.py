@@ -90,12 +90,12 @@ class Main:
         settings_frame.pack(fill="x", padx=10, pady=10)
 
         ttk.Label(settings_frame, text="Voice").grid(column=0, row=0, padx=5, pady=5)
-        voice_var = tk.StringVar(value=self.config["voice"])
+        voice_var = tk.StringVar(value=self.config.get("voice", "English"))
         voice_combo = ttk.Combobox(settings_frame, values=[x.strip() for x in os.listdir("voices")], textvariable=voice_var)
         voice_combo.grid(column=1, row=0, padx=5, pady=5)
 
         ttk.Label(settings_frame, text="Call distance").grid(column=0, row=1, padx=5, pady=5)
-        call_distance_var = tk.DoubleVar(value=self.config["call_distance"])
+        call_distance_var = tk.DoubleVar(value=self.config.get("call_distance", 1.0))
         call_distance_spinbox = ttk.Spinbox(settings_frame, textvariable=call_distance_var, from_=0.1, to=5.0, increment=0.1)
         call_distance_spinbox.grid(column=1, row=1, padx=5, pady=5)
 
@@ -105,7 +105,7 @@ class Main:
                   ).grid(column=0, columnspan=2, row=2, sticky="W")
 
         ttk.Label(settings_frame, text="Calls ahead").grid(column=0, row=3, padx=5, pady=5)
-        calls_ahead_var = tk.DoubleVar(value=self.config["calls_ahead"])
+        calls_ahead_var = tk.DoubleVar(value=self.config.get("calls_ahead", 3))
         calls_ahead_spinbox = ttk.Spinbox(settings_frame, textvariable=calls_ahead_var, from_=1, to=10, increment=1)
         calls_ahead_spinbox.grid(column=1, row=3, padx=5, pady=5)
 
@@ -114,7 +114,7 @@ class Main:
                   ).grid(column=0, columnspan=2, row=4, sticky="W")
 
         ttk.Label(settings_frame, text="Speed multiplier").grid(column=0, row=5, padx=5, pady=5)
-        call_speed_multiplier_var = tk.DoubleVar(value=self.config["call_speed_multiplier"])
+        call_speed_multiplier_var = tk.DoubleVar(value=self.config.get("call_speed_multiplier", 1.0))
         call_speed_multiplier_spinbox = ttk.Spinbox(settings_frame, textvariable=call_speed_multiplier_var, from_=0.0, to=5.0, increment=0.1)
         call_speed_multiplier_spinbox.grid(column=1, row=5, padx=5, pady=5)
 
@@ -125,7 +125,7 @@ class Main:
                   ).grid(column=0, columnspan=2, row=6, sticky="W")
 
         ttk.Label(settings_frame, text="Start button").grid(column=0, row=7, padx=5, pady=5)
-        start_var = tk.StringVar(value=self.config["start_button"])
+        start_var = tk.StringVar(value=self.config.get("start_button", "space"))
         start_entry = ttk.Entry(settings_frame, textvariable=start_var)
         start_entry.grid(column=1, row=7, padx=5, pady=5)
         def start_entry_key(e):
