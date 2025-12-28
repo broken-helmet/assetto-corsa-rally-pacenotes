@@ -28,7 +28,7 @@ class Main:
             str(self.stages.get()),
             self.config.get("voice", "English"),
             float(self.config.get("call_distance", 1.0)),
-            int(self.config.get("calls_ahead", 3)),
+            int(self.config.get("calls_ahead", 4)),
             float(self.config.get("call_speed_multiplier", 1.0)),
             self.config.get("start_button", "space"),
             self.config.get("handbrake", None)
@@ -105,7 +105,7 @@ class Main:
                   ).grid(column=0, columnspan=2, row=2, sticky="W")
 
         ttk.Label(settings_frame, text="Calls ahead").grid(column=0, row=3, padx=5, pady=5)
-        calls_ahead_var = tk.IntVar(value=self.config.get("calls_ahead", 3))
+        calls_ahead_var = tk.IntVar(value=self.config.get("calls_ahead", 4))
         calls_ahead_spinbox = ttk.Spinbox(settings_frame, textvariable=calls_ahead_var, from_=1, to=10, increment=1)
         calls_ahead_spinbox.grid(column=1, row=3, padx=5, pady=5)
 
